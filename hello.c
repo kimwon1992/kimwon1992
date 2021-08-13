@@ -2,8 +2,11 @@
 
 int main (void)
 {
-    printf("My age: %d \n", 20);
-    printf("%d is my point \n", 100);
-    printf("Good \nmorning \neverybody\n");
+    printf("제 이름은 홍길동입니다.\n");
+    printf("제 나이는 %d살이구요.\n", 20);
+    printf("제가 사는 곳의 번지수는 %d-%d입니다.\n",123,456);
+
+    printf("%dx%d=%d\n",4,5,20);
+    printf("%dx%d=%d\n",7,9,63);
     return 0;
 }
