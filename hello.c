@@ -8,5 +8,15 @@ int main (void)
 
     printf("%dx%d=%d\n",4,5,4*5);
     printf("%dx%d=%d\n",7,9,7*9);
+    int num;
+    num=20;
+    printf("%d\n", num);
+
+    int num1=3;
+    int num2=4;
+    int result=num1+num2;
+    printf("덧셈결과:%d\n",result);
+    printf("%d+%d=%d \n",num1, num2, result);
+    printf("%d와 %d의 합은 %d입니다.\n", num1,num2,result);    
     return 0;
 }
