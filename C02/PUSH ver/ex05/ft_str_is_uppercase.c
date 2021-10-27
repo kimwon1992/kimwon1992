@@ -6,11 +6,11 @@
 /*   By: wonkim <wonkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 15:54:41 by wonkim            #+#    #+#             */
-/*   Updated: 2021/10/17 15:55:35 by wonkim           ###   ########.fr       */
+/*   Updated: 2021/10/18 16:12:50 by wonkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_str_is_uppercase(char *str)
+int	ft_str_is_uppercase(char *str)
 {
 	while (str[0] != '\0')
 	{

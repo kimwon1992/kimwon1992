@@ -1,22 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_numeric.c                                :+:      :+:    :+:   */
+/*   ft_ultimate_range.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wonkim <wonkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/17 15:44:13 by wonkim            #+#    #+#             */
-/*   Updated: 2021/10/18 16:12:11 by wonkim           ###   ########.fr       */
+/*   Created: 2021/10/26 10:13:25 by wonkim            #+#    #+#             */
+/*   Updated: 2021/10/26 12:31:14 by wonkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_str_is_numeric(char *str)
+#include <stdlib.h>
+
+int	ft_ultimate_range(int **range, int min, int max)
 {
-	while (str[0] != '\0')
+	int	i;
+	int	size;
+	int	*t;
+
+	i = 0;
+	size = max - min;
+	if (min >= max)
+		return (0);
+	t = (int *)malloc(sizeof(int) * size);
+	if (t == NULL)
+		return (-1);
+	while (min < max)
 	{
-		if (!(str[0] >= '0' && str[0] <= '9'))
-			return (0);
-		str++;
+		t[i] = min;
+		min++;
+		i++;
 	}
-	return (1);
+	*range = t;
+	return (i);
 }

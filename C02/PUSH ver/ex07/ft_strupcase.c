@@ -6,13 +6,13 @@
 /*   By: wonkim <wonkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 15:57:43 by wonkim            #+#    #+#             */
-/*   Updated: 2021/10/17 15:58:35 by wonkim           ###   ########.fr       */
+/*   Updated: 2021/10/18 16:13:12 by wonkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char *ft_strupcase(char *str)
+char	*ft_strupcase(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i] != '\0')

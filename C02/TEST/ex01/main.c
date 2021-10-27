@@ -6,7 +6,7 @@
 /*   By: wonkim <wonkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 17:02:01 by wonkim            #+#    #+#             */
-/*   Updated: 2021/10/17 17:02:05 by wonkim           ###   ########.fr       */
+/*   Updated: 2021/10/18 16:16:38 by wonkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int		main(void)
 	src = "Hello World";
 	printf("===CASE1===\n");
 	printf("base   : %s\n", src);
-	strncpy(dest, src, 8);
+	strncpy(dest, src, 11);
 	printf("cpy    : %s\n", dest);
-	ft_strncpy(dest, src, 8);
+	ft_strncpy(dest, src, 11);
 	printf("ft_cpy : %s\n", dest);
 	src = "               a     ";
 	printf("===CASE2===\n");

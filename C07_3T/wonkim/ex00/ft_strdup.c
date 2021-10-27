@@ -1,22 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_numeric.c                                :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wonkim <wonkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/17 15:44:13 by wonkim            #+#    #+#             */
-/*   Updated: 2021/10/18 16:12:11 by wonkim           ###   ########.fr       */
+/*   Created: 2021/10/26 10:12:52 by wonkim            #+#    #+#             */
+/*   Updated: 2021/10/26 12:26:09 by wonkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_str_is_numeric(char *str)
+#include <stdlib.h>
+
+int	ft_strlen(char *src)
 {
-	while (str[0] != '\0')
+	int	i;
+
+	i = 0;
+	while (src[i])
 	{
-		if (!(str[0] >= '0' && str[0] <= '9'))
-			return (0);
-		str++;
+		i++;
 	}
-	return (1);
+	return (i);
+}
+
+char	*ft_strdup(char *src)
+{
+	int		len;
+	int		i;
+	char	*dest;
+
+	i = 0;
+	len = ft_strlen(src);
+	dest = (char *)malloc(sizeof(char) * (len + 1));
+	if (dest == NULL)
+		return (0);
+	while (src[i])
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = 0;
+	return (dest);
 }

@@ -6,7 +6,7 @@
 /*   By: wonkim <wonkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 16:24:15 by wonkim            #+#    #+#             */
-/*   Updated: 2021/10/17 21:43:09 by wonkim           ###   ########.fr       */
+/*   Updated: 2021/10/18 16:30:04 by wonkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	ft_putstr_non_printable(char *str)
 	ft_init_hex_table(base);
 	i = -1;
 	while (str[++i] != '\0')
+	{	
 		if ((str[i] >= 32 && str[i] <= 126))
 			write(1, &str[i], 1);
 		else
@@ -52,4 +53,5 @@ void	ft_putstr_non_printable(char *str)
 			write(1, &a, 1);
 			write(1, &b, 1);
 		}
+	}
 }

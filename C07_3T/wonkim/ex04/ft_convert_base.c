@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_numeric.c                                :+:      :+:    :+:   */
+/*   ft_convert_base.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wonkim <wonkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/17 15:44:13 by wonkim            #+#    #+#             */
-/*   Updated: 2021/10/18 16:12:11 by wonkim           ###   ########.fr       */
+/*   Created: 2021/10/26 10:14:18 by wonkim            #+#    #+#             */
+/*   Updated: 2021/10/26 12:17:34 by wonkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_str_is_numeric(char *str)
+#include <stdlib.h>
+
+char	*ft_convert_base(char *nbr, char *base_from, char *base_to);
 {
-	while (str[0] != '\0')
-	{
-		if (!(str[0] >= '0' && str[0] <= '9'))
-			return (0);
-		str++;
-	}
-	return (1);
+	return (0);
 }
