@@ -1,0 +1,91 @@
+
+# * [Docker Compose] 
+# 참고 : https://www.youtube.com/watch?v=EK6iYRCIjYs
+
+# * [expose vs ports]
+# expose와 ports 모두 컨테이너 포트를 노출 시키는 것이지만 
+# expose는 호스트 내부의 다른 컨테이너들만 액세스가 가능하고 
+# ports로 노출하면 ports에 설정한 호스트 포트번호로 호스트 외부의 다른 호스트들도 호스트 포트번호로 액세스가 가능합니다. 
+# 물론 이 부분은 호스트의 포트 공개 여부에 따라 다를 수 있지만 기본적으로는 이런 특징을 가집니다.
+# 출처 : https://growd.tistory.com/77
+
+
+version: '3.8' # docker compose version. 
+
+services:
+  mariadb: # 컨테이너
+    restart: always
+    build: requirements/mariadb
+    container_name: mariadb
+    image: mariadb # Container 시작 시 사용할 image.
+    expose:
+      - "3306" # mysql의 기본 포트
+    volumes: # -v 옵션과 동일. 
+      - mariadb-volume:/var/lib/mysql # /home/minkyeki/data/mariadb 디렉토리를 /var/lib/mysql에 매핑.
+    networks:
+      - intra-network
+    env_file:
+      - .env
+
+  wordpress: # 컨테이너
+    depends_on:
+      - mariadb
+    restart: always # always: 컨테이너를 수동으로 끄기전까지 항상 재시작 됩니다.
+    build: requirements/wordpress
+    container_name: wordpress
+    image: wordpress
+    expose:
+      - "9000"
+    volumes:
+      - wordpress-volume:/var/www/html/wordpress # /home/minkyeki/data/wordpress 디렉토리를 /var/www/html/wordpress에 맵핑
+    networks:
+      - intra-network
+    env_file:
+      - .env
+
+  nginx: # 컨테이너
+    depends_on:
+      - wordpress
+    restart: always # always: 컨테이너를 수동으로 끄기전까지 항상 재시작 됩니다.
+    build: requirements/nginx
+    container_name: nginx
+    image: nginx
+    ports: # ? port로 명시한 부분이 바로 host와 연결하는 부분이다. 모든 서비스는 이 port를 통해 접속 가능함.
+      - "443:443"
+    volumes:
+      - wordpress-volume:/var/www/html/wordpress
+    networks:
+      - intra-network
+    env_file:
+      - .env
+
+# * [Docker Network]
+# (0) 한 서버 자원 안에서 하나의 컨테이너만 사용되는 경우 --> host network (host의 네트워크를 컨테이너가 그대로 사용)
+# (1) 한 서버 자원 안에서 앱당 하나의 컨테이너로 구성되고, 그들이 서로 통신하는 경우 --> bridge network
+# (2) 여러 서버 자원(클러스터)에서 모든 컨체이너들이 서로 통신해야 하는 경우 --> overlay network (https://www.exoscale.com/syslog/private-networking-with-docker/)
+networks:
+  intra-network: # 네트워크 이름
+    driver: bridge # Default 네트워크 드라이버. [참고링크: https://docs.docker.com/network/]
+    name: intra-network
+    # ? bridge networks are best when you need multiple containers to communicate on the same Docker host.
+
+# * [Docker Volumes]
+# Ref : https://docs.docker.com/storage/volumes/
+# (0) volume : docker engine이 관리해주는 volume (host에서 접근 불가)
+# (1) bind-mount : host의 파일 시스템을 그대로 사용. host에서 수정 가능하다.
+# (2) tmpfs mount : host의 memory에 임시 저장.
+volumes:
+  mariadb-volume: # volume 이름
+    driver: local
+    driver_opts:
+      type: none
+      o: bind # bind-mount을 사용해서, host의 file-system을 volume으로 사용한다.
+      device: /home/minkyeki/data/mariadb    # ? 이건 linux에서 사용할 volume 경로 ( Subject 명시 )
+      # device: ../data/mariadb     # ! 이건 mac에서 사용할 volume 경로 --> 왜냐면 mac의 /home 경로가 linux와 구성이 다름.
+  wordpress-volume: # volume 이름
+    driver: local
+    driver_opts:
+      type: none
+      o: bind # bind-mount을 사용해서, host의 file-system을 volume으로 사용한다.
+      device: /home/minkyeki/data/wordpress  # ? 이건 linux에서 사용할 volume 경로 ( Subject 명시 )
+      # device: Users/minkyeki/goinfree/docker_study/inception2/data/wordpress     # ! 이건 mac에서 사용할 volume 경로 --> 왜냐면 mac의 /home 경로가 linux와 구성이 다름.
