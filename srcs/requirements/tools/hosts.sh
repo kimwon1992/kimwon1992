@@ -13,7 +13,7 @@ fi
 
 LINE=$(cat ${hosts_path} | grep -x "${conf}" | wc -l)
 
-# /etc/hosts 에 {127.0.0.1 minkyeki.42.fr}을 추가하여, localhost를 해당 도메인으로 설정합니다.
+# /etc/hosts 에 {127.0.0.1 wonkim.42.fr}을 추가하여, localhost를 해당 도메인으로 설정합니다.
 if [ ${LINE} -eq 0 ]; then
     echo ${conf} >> ${hosts_path}
 fi

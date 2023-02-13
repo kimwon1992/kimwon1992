@@ -7,6 +7,19 @@ DOCKER_COMPOSE = docker compose --file $(DOCKER_COMPOSE_FILE)
 
 all: up
 
+install:
+	@echo "INSTALL DOCKER"
+	sudo chmod 777 /etc/resolv.conf
+	echo "search 8.8.4.4\nnameserver 8.8.8.8" > /etc/resolv.conf
+	sudo curl -4 -fsSL https://get.docker.com -o get-docker.sh
+	sudo sh get-docker.sh
+	@echo "INSTALL DOCKER-COMPOSE"
+	sudo curl -4 -SL "https://github.com/docker/compose/releases/download/v2.15.1/docker-compose-$(shell uname -s)-$(shell uname -m)" -o /usr/local/bin/docker-compose
+	sudo chmod +x /usr/local/bin/docker-compose
+	sudo docker-compose --version
+	sudo chmod 777 /etc/hosts
+	echo "127.0.0.1 chpark.42.fr" >> /etc/hosts
+	
 up:
 	@$(VOLUME_SETUP_SH)
 	@$(HOSTS_SETUP_SH)

@@ -21,7 +21,7 @@ services:
     expose:
       - "3306" # mysql의 기본 포트
     volumes: # -v 옵션과 동일. 
-      - mariadb-volume:/var/lib/mysql # /home/minkyeki/data/mariadb 디렉토리를 /var/lib/mysql에 매핑.
+      - mariadb-volume:/var/lib/mysql # /home/wonkim/data/mariadb 디렉토리를 /var/lib/mysql에 매핑.
     networks:
       - intra-network
     env_file:
@@ -37,7 +37,7 @@ services:
     expose:
       - "9000"
     volumes:
-      - wordpress-volume:/var/www/html/wordpress # /home/minkyeki/data/wordpress 디렉토리를 /var/www/html/wordpress에 맵핑
+      - wordpress-volume:/var/www/html/wordpress # /home/wonkim/data/wordpress 디렉토리를 /var/www/html/wordpress에 맵핑
     networks:
       - intra-network
     env_file:
@@ -80,12 +80,12 @@ volumes:
     driver_opts:
       type: none
       o: bind # bind-mount을 사용해서, host의 file-system을 volume으로 사용한다.
-      device: /home/minkyeki/data/mariadb    # ? 이건 linux에서 사용할 volume 경로 ( Subject 명시 )
+      device: /home/wonkim/data/mariadb    # ? 이건 linux에서 사용할 volume 경로 ( Subject 명시 )
       # device: ../data/mariadb     # ! 이건 mac에서 사용할 volume 경로 --> 왜냐면 mac의 /home 경로가 linux와 구성이 다름.
   wordpress-volume: # volume 이름
     driver: local
     driver_opts:
       type: none
       o: bind # bind-mount을 사용해서, host의 file-system을 volume으로 사용한다.
-      device: /home/minkyeki/data/wordpress  # ? 이건 linux에서 사용할 volume 경로 ( Subject 명시 )
-      # device: Users/minkyeki/goinfree/docker_study/inception2/data/wordpress     # ! 이건 mac에서 사용할 volume 경로 --> 왜냐면 mac의 /home 경로가 linux와 구성이 다름.
+      device: /home/wonkim/data/wordpress  # ? 이건 linux에서 사용할 volume 경로 ( Subject 명시 )
+      # device: Users/wonkim/goinfree/docker_study/inception2/data/wordpress     # ! 이건 mac에서 사용할 volume 경로 --> 왜냐면 mac의 /home 경로가 linux와 구성이 다름.

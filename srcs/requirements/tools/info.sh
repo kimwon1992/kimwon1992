@@ -9,12 +9,12 @@
 # hosts_path : /etc/hosts for local dns
 # conf : /etc/hosts configuration for local dns
 
-intra_id=minkyeki
+intra_id=wonkim
 
 # * ----------------------------------------------------------
 if [ "$(uname)" == "Darwin" ]; then
     # Do something under Mac OS X platform        
-    volume_path=/Users/minkyeki/goinfree/docker_study/inception2/data # 이건 내 mac에서 테스트할 경로
+    volume_path=/Users/wonkim/goinfree/docker_study/inception2/data # 이건 내 mac에서 테스트할 경로
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     # Do something under GNU/Linux platform
     volume_path=/home/${intra_id}/data
