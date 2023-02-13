@@ -18,7 +18,7 @@ install:
 	sudo chmod +x /usr/local/bin/docker-compose
 	sudo docker-compose --version
 	sudo chmod 777 /etc/hosts
-	echo "127.0.0.1 chpark.42.fr" >> /etc/hosts
+	echo "127.0.0.1 wonkim.42.fr" >> /etc/hosts
 	
 up:
 	@$(VOLUME_SETUP_SH)
