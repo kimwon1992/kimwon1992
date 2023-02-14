@@ -28,10 +28,14 @@ down:
 	$(DOCKER_COMPOSE) down --volumes
 
 clean:
+	sudo docker-compose -f srcs/docker-compose.yml down -v --rmi all --remove-orphans
 	$(DOCKER_COMPOSE) down --rmi all --volumes
 
 fclean: clean
-	docker system prune -af
+	sudo rm -rf ${HOME}/data
+	sudo docker system prune --volumes --all --force
+	sudo docker network prune --force
+	sudo docker volume prune --force
 	@$(FCLEAN_SETUP_SH)
 
 re:
