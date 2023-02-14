@@ -1,26 +1,15 @@
 
-# * [Docker Compose] 
-# 참고 : https://www.youtube.com/watch?v=EK6iYRCIjYs
-
-# * [expose vs ports]
-# expose와 ports 모두 컨테이너 포트를 노출 시키는 것이지만 
-# expose는 호스트 내부의 다른 컨테이너들만 액세스가 가능하고 
-# ports로 노출하면 ports에 설정한 호스트 포트번호로 호스트 외부의 다른 호스트들도 호스트 포트번호로 액세스가 가능합니다. 
-# 물론 이 부분은 호스트의 포트 공개 여부에 따라 다를 수 있지만 기본적으로는 이런 특징을 가집니다.
-# 출처 : https://growd.tistory.com/77
-
-
-version: '3.8' # docker compose version. 
+version: '3.8'
 
 services:
-  mariadb: # 컨테이너
+  mariadb:
     restart: always
     build: requirements/mariadb
     container_name: mariadb
-    image: mariadb # Container 시작 시 사용할 image.
+    image: mariadb
     expose:
-      - "3306" # mysql의 기본 포트
-    volumes: # -v 옵션과 동일. 
+      - "3306"
+    volumes:
       - mariadb-volume:/var/lib/mysql # /home/wonkim/data/mariadb 디렉토리를 /var/lib/mysql에 매핑.
     networks:
       - intra-network
